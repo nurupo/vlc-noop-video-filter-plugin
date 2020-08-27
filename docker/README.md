@@ -41,7 +41,7 @@ You should see the binaries getting created in the directory you specified to be
 
 ### Building only selected versions of the plugin
 
-If for some reason you don't want to build all of the 4 versions of the plugin binaries, you can specify which exact version you want to build by replacing "all" in the `docker run` command with "[2.1|2.2|3.0|4.0] [32|64]".
+If for some reason you don't want to build all of the 4 versions of the plugin binaries, you can specify which exact version you want to build by replacing "all" in the `docker run` command with "3.0 [32|64]".
 For example, if you want to build only the VLC 3.0 32-bit version of the plugin, you would run
 
 ```bash
