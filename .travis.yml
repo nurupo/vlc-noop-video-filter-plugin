@@ -1,0 +1,16 @@
+language: generic
+
+dist: bionic
+sudo: required
+
+services:
+  - docker
+
+matrix:
+  include:
+    - stage: Build
+    - os: linux
+      env: TARGET=Windows VLC_VERSION=3.0
+
+script:
+  - .travis/script.sh
