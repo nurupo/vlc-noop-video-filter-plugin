@@ -8,7 +8,6 @@ services:
 
 matrix:
   include:
-    - stage: Build
     - os: linux
       env: TARGET=Windows VLC_VERSION=3.0
 
