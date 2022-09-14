@@ -24,6 +24,8 @@
 #include <vlc_filter.h>
 #include <vlc_plugin.h>
 
+#include <vlc_es.h>
+
 static int Create(vlc_object_t *);
 static void Destroy(vlc_object_t *);
 
@@ -46,6 +48,19 @@ static int Create(vlc_object_t *p_this)
 {
     filter_t *p_filter = (filter_t *)p_this;
     p_filter->pf_video_filter = filter;
+
+    video_format_Print(p_this, "noop_video FORMAT IN", &p_filter->fmt_in.video);
+    video_format_Print(p_this, "noop_video FORMAT OUT", &p_filter->fmt_out.video);
+
+    switch(p_filter->fmt_in.video.i_chroma)
+    {
+        case VLC_CODEC_D3D11_OPAQUE:
+        case VLC_CODEC_D3D11_OPAQUE_10B:
+            msg_Err( p_filter, "Unsupported input chroma (%4.4s)",
+                     (char*)&(p_filter->fmt_in.video.i_chroma) );
+            return VLC_EGENERIC;
+    }
+
     return VLC_SUCCESS;
 }
 
